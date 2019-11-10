@@ -39,6 +39,9 @@
       open (link) {
         this.$electron.shell.openExternal(link)
       }
+    },
+    created () {
+      this.$electron.readWeiboAccount(result => console.log(result), error => console.error(error))
     }
   }
 </script>
