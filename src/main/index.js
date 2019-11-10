@@ -1,4 +1,5 @@
 import { app, BrowserWindow } from 'electron'
+import { prepareIpcMain } from './ipc'
 
 /**
  * Set `__static` path to static files in production
@@ -18,16 +19,18 @@ function createWindow () {
    * Initial window options
    */
   mainWindow = new BrowserWindow({
-    height: 563,
-    useContentSize: true,
-    width: 1000
+    width: 1050,
+    height: 600,
+    useContentSize: true
   })
-
   mainWindow.loadURL(winURL)
 
   mainWindow.on('closed', () => {
     mainWindow = null
   })
+
+  // 准备ipc相关
+  prepareIpcMain()
 }
 
 app.on('ready', createWindow)
